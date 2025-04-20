@@ -1,0 +1,5 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Max Francis | Freelance Management Consultant"
+theme = "ananke"
+publishDir = "docs"
