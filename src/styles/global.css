@@ -64,9 +64,9 @@ body {
 
 /* Sidebar */
 .sidebar {
-  width: 280px;
-  min-width: 280px;
-  max-width: 280px;
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
   flex-shrink: 0;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
@@ -83,7 +83,7 @@ body {
 
 /* Main */
 .main {
-  margin-left: 280px;
+  margin-left: 320px;
   flex: 1;
   min-width: 0;
   overflow: visible;
@@ -308,7 +308,7 @@ hr {
 #reading-progress {
   position: fixed;
   top: 0;
-  left: 280px;
+  left: 320px;
   right: 0;
   height: 3px;
   background: var(--accent1);

@@ -1,34 +1,21 @@
 ---
-const BEEHIIV_ID = 'pub_7f6c70f5-6151-44ab-8bb7-13543c025312';
 ---
 
 <div class="email-signup">
-  <p class="email-signup__label">Get new posts in your inbox.</p>
+  <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
   <iframe
-    src={`https://embeds.beehiiv.com/${BEEHIIV_ID}?slim=true`}
+    src="https://subscribe-forms.beehiiv.com/c46e48c0-4e44-4463-aa29-a5bbceff7be2"
+    class="beehiiv-embed"
     data-test-id="beehiiv-embed"
-    width="100%"
-    height="52"
     frameborder="0"
     scrolling="no"
-    style="border-radius: 4px; overflow: hidden;"
+    style="width: 100%; height: 353px; margin: 0; background-color: transparent; box-shadow: none; max-width: 100%;"
   ></iframe>
 </div>
 
 <style>
   .email-signup {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 1.1rem 1rem 1rem;
     margin-top: 0.5rem;
     overflow: hidden;
-  }
-
-  .email-signup__label {
-    font-size: 0.82rem;
-    color: var(--sidebar-muted);
-    line-height: 1.5;
-    margin-bottom: 0.6rem;
-    font-family: 'Lora', Georgia, serif;
   }
 </style>
