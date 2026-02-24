@@ -64,8 +64,8 @@ body {
 
 /* Sidebar */
 .sidebar {
-  width: 320px;
-  min-width: 320px;
+  width: 280px;
+  min-width: 280px;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
   position: fixed;
@@ -81,7 +81,7 @@ body {
 
 /* Main */
 .main {
-  margin-left: 320px;
+  margin-left: 280px;
   flex: 1;
   min-width: 0;
   background-color: var(--bg);
@@ -226,7 +226,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 38px;
   font-weight: 700;
-  color: var(--heading);
+  color: var(--heading) !important;
   line-height: 1.15;
   margin-bottom: 0.5rem;
   margin-top: 0;
@@ -302,7 +302,7 @@ hr {
 #reading-progress {
   position: fixed;
   top: 0;
-  left: 320px;
+  left: 280px;
   right: 0;
   height: 3px;
   background: var(--accent1);
