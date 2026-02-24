@@ -121,7 +121,7 @@ body {
 /* Content */
 .content {
   max-width: 760px;
-  padding: 3rem 3.75rem 4rem 3.75rem;
+  padding: 5rem 3.75rem 4rem 3.75rem;
   overflow: visible;
 }
 
@@ -244,6 +244,14 @@ h1.post-title,
 [data-theme="dark"] .content h1.post-title,
 [data-theme="dark"] .main .content h1.post-title {
   color: #EDE8DC !important;
+}
+
+.post-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
 }
 
 /* ── LINKS ──────────────────────────────────────────────── */
