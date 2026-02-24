@@ -40,7 +40,7 @@ body {
 
 /* ── CSS VARIABLES — DARK MODE ──────────────────────────── */
 [data-theme="dark"] {
-  --bg:           #2F2519;
+  --bg:           #332A1A;
   --bg-alt:       #1E1812;
   --text:         #D4C9B0;
   --text-muted:   #9A8F7A;
@@ -48,7 +48,7 @@ body {
   --sidebar-bg:   #1E1812;
   --sidebar-text: #EDE8DC;
   --sidebar-muted:#A89880;
-  --nav-bg:       #2F2519;
+  --nav-bg:       #2A2018;
   --accent1:      #E8A020;
   --accent2:      #7DB560;
   --accent3:      #4BBCAE;
@@ -66,6 +66,8 @@ body {
 .sidebar {
   width: 280px;
   min-width: 280px;
+  max-width: 280px;
+  flex-shrink: 0;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
   position: fixed;
@@ -84,6 +86,7 @@ body {
   margin-left: 280px;
   flex: 1;
   min-width: 0;
+  overflow: visible;
   background-color: var(--bg);
 }
 
@@ -118,7 +121,8 @@ body {
 /* Content */
 .content {
   max-width: 760px;
-  padding: 3rem 3rem 4rem 3.75rem;
+  padding: 3rem 3.75rem 4rem 3.75rem;
+  overflow: visible;
 }
 
 /* ── SIDEBAR INTERNALS ──────────────────────────────────── */
