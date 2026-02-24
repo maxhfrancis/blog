@@ -228,7 +228,9 @@ h1, h2, h3, h4, h5, h6 {
 .content p { margin-bottom: 1.4em; max-width: 680px; }
 .content li { line-height: 1.8; }
 
-.post-title {
+h1.post-title,
+.content h1.post-title,
+.main .content h1.post-title {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 38px;
   font-weight: 700;
@@ -238,7 +240,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
 }
 
-[data-theme="dark"] .post-title {
+[data-theme="dark"] h1.post-title,
+[data-theme="dark"] .content h1.post-title,
+[data-theme="dark"] .main .content h1.post-title {
   color: #EDE8DC !important;
 }
 
