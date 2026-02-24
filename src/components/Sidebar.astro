@@ -1,0 +1,37 @@
+---
+import EmailSignup from './EmailSignup.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+const { currentPath = '/' } = Astro.props;
+---
+
+<aside class="sidebar">
+  <!-- Profile -->
+  <div class="sidebar__profile-wrapper">
+    <img class="sidebar__profile-img" src="/images/profile.jpg" alt="Max Francis" />
+    <div class="sidebar__profile-overlay">Woof 🐾</div>
+  </div>
+
+  <a href="/" class="sidebar__name">Max Francis</a>
+  <p class="sidebar__tagline">Thoughts from someone trying to figure it out</p>
+
+  <!-- Social icons -->
+  <div class="sidebar__icons">
+    <a href="https://linkedin.com/in/MaxFrancis" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+    <a href="mailto:maxhfrancis@gmail.com" aria-label="Email">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </div>
+
+  <!-- Kit email form -->
+  <EmailSignup />
+
+  <!-- Theme toggle -->
+  <ThemeToggle />
+
+  <footer class="sidebar__footer">
+    &copy; Max Francis {new Date().getFullYear()}
+  </footer>
+</aside>

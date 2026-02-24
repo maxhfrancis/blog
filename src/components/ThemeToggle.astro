@@ -1,0 +1,33 @@
+---
+---
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+  <span id="theme-label">☾ Dark</span>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const label = document.getElementById('theme-label');
+
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = saved === 'dark' || (!saved && prefersDark);
+
+  if (isDark) {
+    root.setAttribute('data-theme', 'dark');
+    label!.textContent = '☀ Light';
+  }
+
+  btn?.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    if (current === 'dark') {
+      root.removeAttribute('data-theme');
+      label!.textContent = '☾ Dark';
+      localStorage.setItem('theme', 'light');
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      label!.textContent = '☀ Light';
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+</script>

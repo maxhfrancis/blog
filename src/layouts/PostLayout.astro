@@ -1,0 +1,14 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
+
+const { title, description, currentPath } = Astro.props;
+---
+<BaseLayout title={title} currentPath={currentPath}>
+  <ReadingProgress />
+  <div class="content">
+    <h1 class="post-title">{title}</h1>
+    {description && <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 2rem;">{description}</p>}
+    <slot />
+  </div>
+</BaseLayout>
