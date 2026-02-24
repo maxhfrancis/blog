@@ -64,9 +64,9 @@ body {
 
 /* Sidebar */
 .sidebar {
-  width: 320px;
-  min-width: 320px;
-  max-width: 320px;
+  width: clamp(260px, 33vw, 400px);
+  min-width: 260px;
+  max-width: 400px;
   flex-shrink: 0;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
@@ -83,7 +83,7 @@ body {
 
 /* Main */
 .main {
-  margin-left: 320px;
+  margin-left: clamp(260px, 33vw, 400px);
   flex: 1;
   min-width: 0;
   overflow: visible;
@@ -316,7 +316,7 @@ hr {
 #reading-progress {
   position: fixed;
   top: 0;
-  left: 320px;
+  left: clamp(260px, 33vw, 400px);
   right: 0;
   height: 3px;
   background: var(--accent1);
