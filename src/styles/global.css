@@ -247,11 +247,15 @@ h1.post-title,
 }
 
 .post-subtitle {
-  color: var(--text-muted);
-  font-size: 1rem;
+  color: #6B4F35;
+  font-size: 1.1rem;
   font-style: italic;
   margin-bottom: 1.5rem;
   margin-top: 0;
+}
+
+[data-theme="dark"] .post-subtitle {
+  color: #A07850;
 }
 
 /* ── LINKS ──────────────────────────────────────────────── */
