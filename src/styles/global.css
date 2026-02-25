@@ -215,7 +215,7 @@ body.drawer-active { overflow: hidden; }
 /* ── DESKTOP LAYOUT — 768px and above ───────────────────── */
 @media (min-width: 768px) {
   :root {
-    --sidebar-width: 280px;
+    --sidebar-width: 300px;
   }
 
   body {
@@ -230,6 +230,7 @@ body.drawer-active { overflow: hidden; }
   /* Sidebar: always visible fixed column */
   .sidebar {
     width: var(--sidebar-width);
+    flex-shrink: 0;
     transform: none;
     transition: none;
     padding: 2.5rem 2rem;
@@ -248,7 +249,7 @@ body.drawer-active { overflow: hidden; }
 
   .content {
     max-width: 760px;
-    padding: 5rem 3.75rem 4rem 3.75rem;
+    padding: 2rem 3.75rem 4rem 3.75rem;
   }
 
   #reading-progress {
@@ -318,6 +319,7 @@ body.drawer-active { overflow: hidden; }
   display: block;
   margin-bottom: 0.4rem;
   letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .sidebar__tagline {
