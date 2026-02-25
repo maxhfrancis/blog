@@ -1,9 +1,11 @@
 ---
 title: "Stop Marketing to Everyone — Focus on Your Best Customers"
-description: "Most businesses segment their markets the wrong way. Value-based segmentation — built on what customers actually do, not what they say — is a better path to growth."
-date: 2026-02-23
+description: "A strategy to unlock future customer loyalty."
+date: 2024-08-12
 draft: false
 ---
+
+*Originally published through [Navalia](https://medium.com/navalia/feature-prioritization-through-customer-lifetime-value-cf6b59c4ee72).*
 
 Many businesses market incorrectly. Intuitively (or formally), they know the three steps of marketing a product are **Segment–Target–Position**:
 
