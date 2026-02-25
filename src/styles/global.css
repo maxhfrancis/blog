@@ -113,7 +113,8 @@ body.drawer-active { overflow: hidden; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.6rem 1rem;
+  height: 56px;
+  padding: 0 1rem;
   background-color: var(--sidebar-bg);
   position: sticky;
   top: 0;
@@ -186,7 +187,7 @@ body.drawer-active { overflow: hidden; }
   align-items: center;
   gap: 1.5rem;
   position: sticky;
-  top: 0;
+  top: 56px; /* clear the 56px mobile-header on mobile */
   z-index: 5;
 }
 
@@ -242,8 +243,7 @@ body.drawer-active { overflow: hidden; }
 
   .nav {
     padding: 0.85rem 3rem;
-    /* Nav sits below the fixed sidebar top edge — no need to adjust top */
-    top: 0;
+    top: 0; /* no mobile-header on desktop */
   }
 
   .content {
@@ -260,23 +260,33 @@ body.drawer-active { overflow: hidden; }
 .sidebar__profile-wrapper {
   position: relative;
   display: block;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid var(--accent1);
   box-shadow: 0 0 0 4px rgba(232, 160, 32, 0.15);
   cursor: pointer;
   margin: 0 auto 1.25rem;
+  flex-shrink: 0;
 }
 
 .sidebar__profile-img {
-  width: 100%;
-  height: 100%;
-  max-width: 120px;
-  max-height: 120px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   display: block;
+}
+
+@media (min-width: 768px) {
+  .sidebar__profile-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+  .sidebar__profile-img {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .sidebar__profile-overlay {
