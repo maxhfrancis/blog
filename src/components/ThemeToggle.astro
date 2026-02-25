@@ -1,33 +1,42 @@
 ---
 ---
-<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
   <span id="theme-label">☾ Dark</span>
 </button>
 
 <script>
   const root = document.documentElement;
   const btn = document.getElementById('theme-toggle');
-  const label = document.getElementById('theme-label');
+  const label = document.getElementById('theme-label')!;
 
-  const saved = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark = saved === 'dark' || (!saved && prefersDark);
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-  if (isDark) {
-    root.setAttribute('data-theme', 'dark');
-    label!.textContent = '☀ Light';
+  function applyTheme(mode: string) {
+    if (mode === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      label.textContent = '⊙ System';
+    } else if (mode === 'light') {
+      root.setAttribute('data-theme', 'light');
+      label.textContent = '☾ Dark';
+    } else {
+      root.setAttribute('data-theme', systemDark.matches ? 'dark' : 'light');
+      label.textContent = '☀ Light';
+    }
   }
 
-  btn?.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme');
-    if (current === 'dark') {
-      root.removeAttribute('data-theme');
-      label!.textContent = '☾ Dark';
-      localStorage.setItem('theme', 'light');
-    } else {
-      root.setAttribute('data-theme', 'dark');
-      label!.textContent = '☀ Light';
-      localStorage.setItem('theme', 'dark');
+  const saved = localStorage.getItem('theme') ?? 'system';
+  applyTheme(saved);
+
+  systemDark.addEventListener('change', (e) => {
+    if ((localStorage.getItem('theme') ?? 'system') === 'system') {
+      root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
     }
+  });
+
+  btn?.addEventListener('click', () => {
+    const current = localStorage.getItem('theme') ?? 'system';
+    const next = current === 'light' ? 'dark' : current === 'dark' ? 'system' : 'light';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
   });
 </script>
