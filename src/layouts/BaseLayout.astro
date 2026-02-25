@@ -1,5 +1,6 @@
 ---
 import Sidebar from '../components/Sidebar.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import '../styles/global.css';
 
 const { title = 'Max Francis', currentPath = '/' } = Astro.props;
@@ -50,6 +51,21 @@ const { title = 'Max Francis', currentPath = '/' } = Astro.props;
     </nav>
     <slot />
   </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__social">
+      <a href="https://linkedin.com/in/MaxFrancis" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a href="mailto:maxhfrancis@gmail.com" aria-label="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+    </div>
+    <span class="site-footer__copy">&copy; Max Francis {new Date().getFullYear()}</span>
+    <div class="site-footer__toggle">
+      <ThemeToggle />
+    </div>
+  </footer>
 
   <script>
     const sidebar  = document.getElementById('sidebar');

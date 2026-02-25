@@ -1,6 +1,4 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
-
 const { currentPath = '/' } = Astro.props;
 ---
 
@@ -16,21 +14,4 @@ const { currentPath = '/' } = Astro.props;
 
   <a href="/" class="sidebar__name">Max Francis</a>
   <p class="sidebar__tagline">Thoughts from someone trying to figure it out</p>
-
-  <!-- Social icons -->
-  <div class="sidebar__icons">
-    <a href="https://linkedin.com/in/MaxFrancis" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-    <a href="mailto:maxhfrancis@gmail.com" aria-label="Email">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </div>
-
-  <!-- Theme toggle -->
-  <ThemeToggle />
-
-  <footer class="sidebar__footer">
-    &copy; Max Francis {new Date().getFullYear()}
-  </footer>
 </aside>
