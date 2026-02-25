@@ -43,22 +43,22 @@ const { title = 'Max Francis', currentPath = '/' } = Astro.props;
         <a href="/about" class:list={['nav-link', { active: currentPath === '/about' }]}>About</a>
       </nav>
       <slot />
+
+      <footer class="site-footer">
+        <div class="site-footer__social">
+          <a href="https://linkedin.com/in/MaxFrancis" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="mailto:maxhfrancis@gmail.com" aria-label="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+        <span class="site-footer__copy">&copy; Max Francis {new Date().getFullYear()}</span>
+        <div class="site-footer__toggle">
+          <ThemeToggle />
+        </div>
+      </footer>
     </div>
   </div>
-
-  <footer class="site-footer">
-    <div class="site-footer__social">
-      <a href="https://linkedin.com/in/MaxFrancis" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
-      <a href="mailto:maxhfrancis@gmail.com" aria-label="Email">
-        <i class="fa-solid fa-envelope"></i>
-      </a>
-    </div>
-    <span class="site-footer__copy">&copy; Max Francis {new Date().getFullYear()}</span>
-    <div class="site-footer__toggle">
-      <ThemeToggle />
-    </div>
-  </footer>
 </body>
 </html>
