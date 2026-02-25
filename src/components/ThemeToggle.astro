@@ -1,7 +1,7 @@
 ---
 ---
 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-  <span id="theme-label">☾ Dark</span>
+  <span id="theme-label">☀ Light</span>
 </button>
 
 <script>
@@ -14,13 +14,13 @@
   function applyTheme(mode: string) {
     if (mode === 'dark') {
       root.setAttribute('data-theme', 'dark');
-      label.textContent = '⊙ System';
+      label.textContent = '☾ Dark';
     } else if (mode === 'light') {
       root.setAttribute('data-theme', 'light');
-      label.textContent = '☾ Dark';
+      label.textContent = '☀ Light';
     } else {
       root.setAttribute('data-theme', systemDark.matches ? 'dark' : 'light');
-      label.textContent = '☀ Light';
+      label.textContent = '⊙ System';
     }
   }
 
