@@ -222,8 +222,8 @@ body {
   }
 
   .content {
-    max-width: 760px;
-    padding: var(--space-md) var(--space-xl) var(--space-xl);
+    max-width: clamp(600px, 80%, 900px);
+    padding: var(--space-md) var(--space-xl) var(--space-xl) var(--space-lg);
   }
 
   #reading-progress {
