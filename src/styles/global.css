@@ -20,8 +20,6 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Prevent background scroll when drawer is open */
-body.drawer-active { overflow: hidden; }
 
 /* ── CSS VARIABLES — LIGHT MODE ─────────────────────────── */
 :root {
@@ -78,28 +76,10 @@ body.drawer-active { overflow: hidden; }
   color: var(--sidebar-text);
   padding: 1.25rem 1.5rem 2rem;
   z-index: 50;
-  /* Mobile: drawer hidden off-screen to the left */
-  transform: translateX(-100%);
-  transition: transform 0.28s ease;
-}
-
-.sidebar.is-open {
-  transform: translateX(0);
-}
-
-/* Overlay dims the page when drawer is open */
-.drawer-overlay {
+  /* Hidden on mobile, shown on desktop */
   display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 40;
-  cursor: pointer;
 }
 
-.drawer-overlay.is-open {
-  display: block;
-}
 
 /* Main: full width on mobile (sidebar is out of flow) */
 .main {
@@ -112,7 +92,6 @@ body.drawer-active { overflow: hidden; }
 .mobile-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 56px;
   padding: 0 1rem;
   background-color: var(--sidebar-bg);
@@ -144,39 +123,6 @@ body.drawer-active { overflow: hidden; }
   text-decoration: none;
 }
 
-.hamburger {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background-color: var(--sidebar-text);
-  border-radius: 2px;
-}
-
-/* ── SIDEBAR CLOSE BUTTON (mobile drawer only) ──────────── */
-.sidebar__close {
-  align-self: flex-end;
-  background: none;
-  border: none;
-  color: var(--sidebar-muted);
-  font-size: 1.75rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 0.5rem;
-  transition: color 0.2s ease;
-}
-
-.sidebar__close:hover { color: var(--sidebar-text); }
 
 /* ── NAV ────────────────────────────────────────────────── */
 .nav {
@@ -224,15 +170,12 @@ body.drawer-active { overflow: hidden; }
 
   /* Hide mobile-only elements */
   .mobile-header { display: none; }
-  .drawer-overlay { display: none !important; }
-  .sidebar__close { display: none; }
 
   /* Sidebar: always visible fixed column */
   .sidebar {
+    display: flex;
     width: var(--sidebar-width);
     flex-shrink: 0;
-    transform: none;
-    transition: none;
     padding: 2.5rem 2rem;
     z-index: 10;
   }

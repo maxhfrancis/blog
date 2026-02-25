@@ -1,6 +1,6 @@
 ---
 title: "Frame of Reference"
-description: "Answering physics and daughters"
+description: "Answering physics and daughters."
 date: 2026-02-25
 draft: false
 ---
