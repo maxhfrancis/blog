@@ -24,16 +24,56 @@ const { title = 'Max Francis', currentPath = '/' } = Astro.props;
   </script>
 </head>
 <body>
-  <div class="layout">
-    <Sidebar currentPath={currentPath} />
-    <div class="main">
-      <nav class="nav">
-        <a href="/" class:list={['nav-link', { active: currentPath === '/' }]}>Home</a>
-        <a href="/others" class:list={['nav-link', { active: currentPath === '/others' }]}>Others</a>
-        <a href="/about" class:list={['nav-link', { active: currentPath === '/about' }]}>About</a>
-      </nav>
-      <slot />
-    </div>
+  <!-- Drawer overlay — tapping closes the sidebar on mobile -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <Sidebar currentPath={currentPath} />
+
+  <div class="main">
+    <!-- Mobile-only top bar -->
+    <header class="mobile-header">
+      <div class="mobile-header__identity">
+        <img src="/images/profile.jpg" alt="" class="mobile-header__avatar" />
+        <a href="/" class="mobile-header__name">Max Francis</a>
+      </div>
+      <button class="hamburger" id="menu-open" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <nav class="nav">
+      <a href="/" class:list={['nav-link', { active: currentPath === '/' }]}>Home</a>
+      <a href="/others" class:list={['nav-link', { active: currentPath === '/others' }]}>Others</a>
+      <a href="/about" class:list={['nav-link', { active: currentPath === '/about' }]}>About</a>
+    </nav>
+    <slot />
   </div>
+
+  <script>
+    const sidebar  = document.getElementById('sidebar');
+    const overlay  = document.getElementById('drawer-overlay');
+    const openBtn  = document.getElementById('menu-open');
+    const closeBtn = document.getElementById('sidebar-close');
+
+    function openDrawer() {
+      sidebar?.classList.add('is-open');
+      overlay?.classList.add('is-open');
+      openBtn?.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('drawer-active');
+    }
+
+    function closeDrawer() {
+      sidebar?.classList.remove('is-open');
+      overlay?.classList.remove('is-open');
+      openBtn?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('drawer-active');
+    }
+
+    openBtn?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    overlay?.addEventListener('click', closeDrawer);
+  </script>
 </body>
 </html>

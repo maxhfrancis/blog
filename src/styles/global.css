@@ -20,6 +20,9 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* Prevent background scroll when drawer is open */
+body.drawer-active { overflow: hidden; }
+
 /* ── CSS VARIABLES — LIGHT MODE ─────────────────────────── */
 :root {
   --bg:             #F2EBD9;
@@ -58,29 +61,121 @@ body {
   --subtitle-color: #A07850;
 }
 
-/* ── LAYOUT — MOBILE FIRST ──────────────────────────────── */
-/* Base styles target mobile. Desktop overrides via min-width query below. */
-
-.layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+/* ── LAYOUT ─────────────────────────────────────────────── */
+/* Sidebar is always position:fixed — a hidden drawer on mobile,
+   a visible column on desktop. The .main fills the remaining space. */
 
 .sidebar {
-  width: 100%;
-  background-color: var(--sidebar-bg);
-  color: var(--sidebar-text);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: min(300px, 85vw);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 1.5rem 2rem;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 1.25rem 1.5rem 2rem;
+  z-index: 50;
+  /* Mobile: drawer hidden off-screen to the left */
+  transform: translateX(-100%);
+  transition: transform 0.28s ease;
 }
 
+.sidebar.is-open {
+  transform: translateX(0);
+}
+
+/* Overlay dims the page when drawer is open */
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 40;
+  cursor: pointer;
+}
+
+.drawer-overlay.is-open {
+  display: block;
+}
+
+/* Main: full width on mobile (sidebar is out of flow) */
 .main {
-  flex: 1;
+  min-height: 100vh;
   min-width: 0;
   background-color: var(--bg);
 }
+
+/* ── MOBILE HEADER ──────────────────────────────────────── */
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  background-color: var(--sidebar-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.mobile-header__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.mobile-header__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent1);
+  flex-shrink: 0;
+}
+
+.mobile-header__name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--sidebar-text);
+  text-decoration: none;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--sidebar-text);
+  border-radius: 2px;
+}
+
+/* ── SIDEBAR CLOSE BUTTON (mobile drawer only) ──────────── */
+.sidebar__close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: var(--sidebar-muted);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.sidebar__close:hover { color: var(--sidebar-text); }
 
 /* ── NAV ────────────────────────────────────────────────── */
 .nav {
@@ -126,28 +221,29 @@ body {
     font-size: 18px;
   }
 
-  .layout {
-    flex-direction: row;
-  }
+  /* Hide mobile-only elements */
+  .mobile-header { display: none; }
+  .drawer-overlay { display: none !important; }
+  .sidebar__close { display: none; }
 
+  /* Sidebar: always visible fixed column */
   .sidebar {
     width: var(--sidebar-width);
-    flex-shrink: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    overflow-y: auto;
+    transform: none;
+    transition: none;
     padding: 2.5rem 2rem;
     z-index: 10;
   }
 
+  /* Main: offset right of sidebar */
   .main {
     margin-left: var(--sidebar-width);
   }
 
   .nav {
     padding: 0.85rem 3rem;
+    /* Nav sits below the fixed sidebar top edge — no need to adjust top */
+    top: 0;
   }
 
   .content {
@@ -268,7 +364,6 @@ h1, h2, h3, h4, h5, h6 {
 .content p { margin-bottom: 1.4em; }
 .content li { line-height: 1.8; }
 
-/* Post title overrides only the properties that differ from the base heading rule */
 .post-title {
   font-weight: 700;
   line-height: 1.15;
