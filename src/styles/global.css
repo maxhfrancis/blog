@@ -27,6 +27,7 @@ body {
   --font-size-body:         clamp(16px, 1.1vw, 18px);
 
   /* Spacing scale */
+  --space-xs:               0.35rem;
   --space-sm:               0.75rem;
   --space-md:               1.5rem;
   --space-lg:               2.5rem;
@@ -113,6 +114,9 @@ body {
 .main {
   min-width: 0;
   background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ── MOBILE HEADER ──────────────────────────────────────── */
@@ -189,12 +193,14 @@ body {
   /* Two-column flex: sidebar left, main fills the rest */
   .page {
     display: flex;
-    align-items: flex-start; /* required for position:sticky on sidebar */
+    /* Default align-items: stretch so .main fills full height */
   }
 
-  /* Sidebar: sticky column, never scrolls off screen */
+  /* Sidebar: align-self: flex-start so sticky works correctly;
+     sidebar sizes to its own content, not the full page height */
   .sidebar {
     display: flex;
+    align-self: flex-start;
     width: var(--sidebar-width);
     flex-shrink: 0;
     position: sticky;
@@ -428,12 +434,13 @@ hr {
 /* ── SITE FOOTER ─────────────────────────────────────────── */
 .site-footer {
   background: var(--footer-bg);
-  padding: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   text-align: center;
+  margin-top: auto;
 }
 
 .site-footer__social {
@@ -443,7 +450,7 @@ hr {
 
 .site-footer__social a {
   color: var(--footer-icon);
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -451,7 +458,7 @@ hr {
 .site-footer__social a:hover { color: var(--accent1); }
 
 .site-footer__copy {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--footer-text);
 }
 
