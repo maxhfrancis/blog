@@ -13,7 +13,7 @@
 html { font-size: 16px; }
 
 body {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.8;
   background-color: var(--bg);
   color: var(--text);
@@ -37,7 +37,6 @@ body {
   --border:         rgba(196, 137, 42, 0.3);
   --hr:             #C4892A;
   --subtitle-color: #6B4F35;
-  --sidebar-width:  clamp(260px, 33vw, 400px);
 }
 
 /* ── CSS VARIABLES — DARK MODE ──────────────────────────── */
@@ -59,30 +58,25 @@ body {
   --subtitle-color: #A07850;
 }
 
-/* ── LAYOUT ─────────────────────────────────────────────── */
+/* ── LAYOUT — MOBILE FIRST ──────────────────────────────── */
+/* Base styles target mobile. Desktop overrides via min-width query below. */
+
 .layout {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
 .sidebar {
-  width: var(--sidebar-width);
-  flex-shrink: 0;
+  width: 100%;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 2.5rem 2rem;
-  z-index: 10;
+  padding: 1.5rem 1.5rem 2rem;
 }
 
 .main {
-  margin-left: var(--sidebar-width);
   flex: 1;
   min-width: 0;
   background-color: var(--bg);
@@ -92,7 +86,7 @@ body {
 .nav {
   background-color: var(--nav-bg);
   border-bottom: 1px solid var(--border);
-  padding: 0.85rem 3rem;
+  padding: 0.75rem 1.25rem;
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -119,8 +113,51 @@ body {
 
 /* ── CONTENT ────────────────────────────────────────────── */
 .content {
-  max-width: 760px;
-  padding: 5rem 3.75rem 4rem 3.75rem;
+  padding: 2rem 1.25rem 3rem;
+}
+
+/* ── DESKTOP LAYOUT — 768px and above ───────────────────── */
+@media (min-width: 768px) {
+  :root {
+    --sidebar-width: 280px;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  .layout {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 2.5rem 2rem;
+    z-index: 10;
+  }
+
+  .main {
+    margin-left: var(--sidebar-width);
+  }
+
+  .nav {
+    padding: 0.85rem 3rem;
+  }
+
+  .content {
+    max-width: 760px;
+    padding: 5rem 3.75rem 4rem 3.75rem;
+  }
+
+  #reading-progress {
+    left: var(--sidebar-width);
+  }
 }
 
 /* ── SIDEBAR INTERNALS ──────────────────────────────────── */
@@ -218,11 +255,17 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.5em;
 }
 
-.content h1 { font-size: 38px; }
-.content h2 { font-size: 30px; }
-.content h3 { font-size: 24px; }
+.content h1 { font-size: 28px; }
+.content h2 { font-size: 22px; }
+.content h3 { font-size: 18px; }
 
-.content p { margin-bottom: 1.4em; max-width: 680px; }
+@media (min-width: 768px) {
+  .content h1 { font-size: 38px; }
+  .content h2 { font-size: 30px; }
+  .content h3 { font-size: 24px; }
+}
+
+.content p { margin-bottom: 1.4em; }
 .content li { line-height: 1.8; }
 
 /* Post title overrides only the properties that differ from the base heading rule */
@@ -288,13 +331,17 @@ hr {
 
 .post-card__title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--heading);
   text-decoration: none;
   line-height: 1.25;
   display: block;
   margin-bottom: 0.6rem;
+}
+
+@media (min-width: 768px) {
+  .post-card__title { font-size: 28px; }
 }
 
 .post-card__title:hover { color: var(--accent1); text-decoration: none; }
@@ -315,7 +362,7 @@ hr {
 #reading-progress {
   position: fixed;
   top: 0;
-  left: var(--sidebar-width);
+  left: 0;
   right: 0;
   height: 3px;
   background: var(--accent1);
@@ -341,40 +388,6 @@ hr {
 }
 
 .theme-toggle:hover { border-color: var(--accent1); color: var(--accent1); }
-
-/* ── MOBILE ─────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
-    padding: 1.5rem 1.5rem 2.5rem;
-  }
-
-  .main {
-    margin-left: 0;
-  }
-
-  .nav {
-    padding: 0.75rem 1.25rem;
-  }
-
-  .content {
-    padding: 2rem 1.25rem 3rem;
-  }
-
-  #reading-progress {
-    left: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  body { font-size: 16px; }
-  .content h1 { font-size: 30px; }
-  .content h2 { font-size: 24px; }
-  .content h3 { font-size: 20px; }
-  .post-card__title { font-size: 22px; }
-}
 
 /* ── CODE ───────────────────────────────────────────────── */
 pre {
