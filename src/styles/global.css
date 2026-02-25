@@ -42,18 +42,13 @@ body {
   --sidebar-bg:             #3D3226;
   --sidebar-text:           #F2EBD9;
   --sidebar-muted:          #C9BBA8;
-  --nav-bg:                 #E8DFC8;
+  --header-footer-bg:       #E8DFC8;
   --accent1:                #E8A020;
   --accent2:                #7DB560;
   --accent3:                #3A9B8E;
   --border:                 rgba(196, 137, 42, 0.3);
   --hr:                     #C4892A;
   --subtitle-color:         #6B4F35;
-
-  /* Footer — fixed dark regardless of theme */
-  --footer-bg:              #2A2018;
-  --footer-text:            #8B7355;
-  --footer-icon:            #EDE8DC;
 
   /* Derived alpha colors */
   --accent1-glow:           rgba(232, 160, 32, 0.15);
@@ -71,7 +66,7 @@ body {
 }
 
 /* ── CSS VARIABLES — DARK MODE ──────────────────────────── */
-/* Only color overrides — layout, spacing, and footer vars are unchanged */
+/* Only color overrides — layout and spacing vars are unchanged */
 [data-theme="dark"] {
   --bg:                     #332A1A;
   --bg-alt:                 #1E1812;
@@ -81,7 +76,7 @@ body {
   --sidebar-bg:             #1E1812;
   --sidebar-text:           #EDE8DC;
   --sidebar-muted:          #A89880;
-  --nav-bg:                 #2A2018;
+  --header-footer-bg:       #2A2018;
   --accent1:                #E8A020;
   --accent2:                #7DB560;
   --accent3:                #4BBCAE;
@@ -156,7 +151,7 @@ body {
 
 /* ── NAV ────────────────────────────────────────────────── */
 .nav {
-  background-color: var(--nav-bg);
+  background-color: var(--header-footer-bg);
   border-bottom: 1px solid var(--border);
   padding: var(--space-sm) var(--space-md);
   display: flex;
@@ -420,7 +415,7 @@ hr {
   background: none;
   border: 1px solid var(--toggle-border);
   border-radius: 20px;
-  color: var(--footer-text);
+  color: var(--text-muted);
   font-size: 0.8rem;
   padding: 0.3rem var(--space-sm);
   cursor: pointer;
@@ -433,7 +428,7 @@ hr {
 
 /* ── SITE FOOTER ─────────────────────────────────────────── */
 .site-footer {
-  background: var(--footer-bg);
+  background: var(--header-footer-bg);
   padding: var(--space-sm) var(--space-md);
   display: flex;
   flex-direction: column;
@@ -449,7 +444,7 @@ hr {
 }
 
 .site-footer__social a {
-  color: var(--footer-icon);
+  color: var(--text-muted);
   font-size: 0.9rem;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -459,7 +454,7 @@ hr {
 
 .site-footer__copy {
   font-size: 0.7rem;
-  color: var(--footer-text);
+  color: var(--text-muted);
 }
 
 @media (min-width: 768px) {
