@@ -22,38 +22,41 @@ body {
 
 /* ── CSS VARIABLES — LIGHT MODE ─────────────────────────── */
 :root {
-  --bg:           #F2EBD9;
-  --bg-alt:       #EAE0CC;
-  --text:         #2C2416;
-  --text-muted:   #8B7355;
-  --heading:      #1A1208;
-  --sidebar-bg:   #3D3226;
-  --sidebar-text: #F2EBD9;
-  --sidebar-muted:#C9BBA8;
-  --nav-bg:       #E8DFC8;
-  --accent1:      #E8A020;
-  --accent2:      #7DB560;
-  --accent3:      #3A9B8E;
-  --border:       rgba(196, 137, 42, 0.3);
-  --hr:           #C4892A;
+  --bg:             #F2EBD9;
+  --bg-alt:         #EAE0CC;
+  --text:           #2C2416;
+  --text-muted:     #8B7355;
+  --heading:        #1A1208;
+  --sidebar-bg:     #3D3226;
+  --sidebar-text:   #F2EBD9;
+  --sidebar-muted:  #C9BBA8;
+  --nav-bg:         #E8DFC8;
+  --accent1:        #E8A020;
+  --accent2:        #7DB560;
+  --accent3:        #3A9B8E;
+  --border:         rgba(196, 137, 42, 0.3);
+  --hr:             #C4892A;
+  --subtitle-color: #6B4F35;
+  --sidebar-width:  clamp(260px, 33vw, 400px);
 }
 
 /* ── CSS VARIABLES — DARK MODE ──────────────────────────── */
 [data-theme="dark"] {
-  --bg:           #332A1A;
-  --bg-alt:       #1E1812;
-  --text:         #D4C9B0;
-  --text-muted:   #9A8F7A;
-  --heading:      #EDE8DC;
-  --sidebar-bg:   #1E1812;
-  --sidebar-text: #EDE8DC;
-  --sidebar-muted:#A89880;
-  --nav-bg:       #2A2018;
-  --accent1:      #E8A020;
-  --accent2:      #7DB560;
-  --accent3:      #4BBCAE;
-  --border:       rgba(196, 137, 42, 0.25);
-  --hr:           #C4892A;
+  --bg:             #332A1A;
+  --bg-alt:         #1E1812;
+  --text:           #D4C9B0;
+  --text-muted:     #9A8F7A;
+  --heading:        #EDE8DC;
+  --sidebar-bg:     #1E1812;
+  --sidebar-text:   #EDE8DC;
+  --sidebar-muted:  #A89880;
+  --nav-bg:         #2A2018;
+  --accent1:        #E8A020;
+  --accent2:        #7DB560;
+  --accent3:        #4BBCAE;
+  --border:         rgba(196, 137, 42, 0.25);
+  --hr:             #C4892A;
+  --subtitle-color: #A07850;
 }
 
 /* ── LAYOUT ─────────────────────────────────────────────── */
@@ -62,11 +65,8 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
-  width: clamp(260px, 33vw, 400px);
-  min-width: 260px;
-  max-width: 400px;
+  width: var(--sidebar-width);
   flex-shrink: 0;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
@@ -77,23 +77,21 @@ body {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 2.5rem 2rem 2.5rem;
+  padding: 2.5rem 2rem;
   z-index: 10;
 }
 
-/* Main */
 .main {
-  margin-left: clamp(260px, 33vw, 400px);
+  margin-left: var(--sidebar-width);
   flex: 1;
   min-width: 0;
-  overflow: visible;
   background-color: var(--bg);
 }
 
-/* Nav */
+/* ── NAV ────────────────────────────────────────────────── */
 .nav {
   background-color: var(--nav-bg);
-  border-bottom: 1px solid rgba(196, 137, 42, 0.4);
+  border-bottom: 1px solid var(--border);
   padding: 0.85rem 3rem;
   display: flex;
   align-items: center;
@@ -103,7 +101,7 @@ body {
   z-index: 5;
 }
 
-.nav a {
+.nav-link {
   font-family: 'Lora', Georgia, serif;
   font-size: 17px;
   letter-spacing: 0.04em;
@@ -112,23 +110,23 @@ body {
   padding-bottom: 3px;
 }
 
-.nav a:hover { color: var(--accent1); }
-.nav a.active {
+.nav-link:hover { color: var(--accent1); }
+
+.nav-link.active {
   color: var(--accent3);
   border-bottom: 3px solid var(--accent3);
 }
 
-/* Content */
+/* ── CONTENT ────────────────────────────────────────────── */
 .content {
   max-width: 760px;
   padding: 5rem 3.75rem 4rem 3.75rem;
-  overflow: visible;
 }
 
 /* ── SIDEBAR INTERNALS ──────────────────────────────────── */
 .sidebar__profile-wrapper {
   position: relative;
-  display: inline-block;
+  display: block;
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -137,7 +135,6 @@ body {
   box-shadow: 0 0 0 4px rgba(232, 160, 32, 0.15);
   cursor: pointer;
   margin: 0 auto 1.25rem;
-  display: block;
 }
 
 .sidebar__profile-img {
@@ -228,34 +225,21 @@ h1, h2, h3, h4, h5, h6 {
 .content p { margin-bottom: 1.4em; max-width: 680px; }
 .content li { line-height: 1.8; }
 
-h1.post-title,
-.content h1.post-title,
-.main .content h1.post-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 38px;
+/* Post title overrides only the properties that differ from the base heading rule */
+.post-title {
   font-weight: 700;
-  color: #1A1208 !important;
   line-height: 1.15;
   margin-bottom: 0.5rem;
   margin-top: 0;
-}
-
-[data-theme="dark"] h1.post-title,
-[data-theme="dark"] .content h1.post-title,
-[data-theme="dark"] .main .content h1.post-title {
-  color: #EDE8DC !important;
+  /* color: inherits var(--heading) from the h1-h6 rule above */
 }
 
 .post-subtitle {
-  color: #6B4F35;
+  color: var(--subtitle-color);
   font-size: 1.1rem;
   font-style: italic;
   margin-bottom: 1.5rem;
   margin-top: 0;
-}
-
-[data-theme="dark"] .post-subtitle {
-  color: #A07850;
 }
 
 /* ── LINKS ──────────────────────────────────────────────── */
@@ -266,6 +250,7 @@ a {
   text-underline-offset: 3px;
   transition: color 0.15s ease;
 }
+
 a:hover {
   color: var(--accent1);
   text-decoration-color: rgba(232, 160, 32, 0.5);
@@ -298,6 +283,7 @@ hr {
   padding: 2rem 0;
   border-bottom: 1px solid var(--border);
 }
+
 .post-card:last-child { border-bottom: none; }
 
 .post-card__title {
@@ -310,6 +296,7 @@ hr {
   display: block;
   margin-bottom: 0.6rem;
 }
+
 .post-card__title:hover { color: var(--accent1); text-decoration: none; }
 
 .post-card__excerpt {
@@ -328,7 +315,7 @@ hr {
 #reading-progress {
   position: fixed;
   top: 0;
-  left: clamp(260px, 33vw, 400px);
+  left: var(--sidebar-width);
   right: 0;
   height: 3px;
   background: var(--accent1);
@@ -338,64 +325,10 @@ hr {
   transition: transform 0.05s linear;
 }
 
-/* ── KIT FORM ───────────────────────────────────────────── */
-.kit-form {
-  background: rgba(0,0,0,0.2);
-  border-radius: 8px;
-  padding: 1.25rem 1rem;
-  margin-top: 0.5rem;
-}
-
-.kit-form__heading {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--sidebar-text);
-  margin-bottom: 0.35rem;
-}
-
-.kit-form__description {
-  font-size: 0.82rem;
-  color: var(--sidebar-muted);
-  line-height: 1.5;
-  margin-bottom: 0.85rem;
-}
-
-.kit-form__input {
-  width: 100%;
-  padding: 0.55rem 0.75rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 4px;
-  color: var(--sidebar-text);
-  font-size: 0.875rem;
-  font-family: 'Lora', Georgia, serif;
-  margin-bottom: 0.6rem;
-  outline: none;
-}
-
-.kit-form__input::placeholder { color: var(--sidebar-muted); }
-.kit-form__input:focus { border-color: var(--accent1); }
-
-.kit-form__btn {
-  width: 100%;
-  padding: 0.55rem;
-  background: var(--accent1);
-  border: none;
-  border-radius: 4px;
-  color: #1A1208;
-  font-family: 'Lora', Georgia, serif;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.kit-form__btn:hover { background: #d4911c; }
-
 /* ── DARK MODE TOGGLE ───────────────────────────────────── */
 .theme-toggle {
   background: none;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   color: var(--sidebar-muted);
   font-size: 0.8rem;
@@ -406,6 +339,7 @@ hr {
   display: block;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
+
 .theme-toggle:hover { border-color: var(--accent1); color: var(--accent1); }
 
 /* ── MOBILE ─────────────────────────────────────────────── */
@@ -413,7 +347,6 @@ hr {
   .sidebar {
     position: static;
     width: 100%;
-    min-width: unset;
     height: auto;
     padding: 1.5rem 1.5rem 2.5rem;
   }
@@ -435,15 +368,28 @@ hr {
   }
 }
 
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .content h1 { font-size: 30px; }
+  .content h2 { font-size: 24px; }
+  .content h3 { font-size: 20px; }
+  .post-card__title { font-size: 22px; }
+}
+
 /* ── CODE ───────────────────────────────────────────────── */
 pre {
+  /* !important required: Shiki injects an inline background-color that cannot
+     be overridden any other way. This is the only legitimate use of !important
+     in this stylesheet. */
   background: var(--bg-alt) !important;
   border-radius: 6px;
   padding: 1rem;
   overflow-x: auto;
   margin: 1.5em 0;
 }
+
 code { font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.875em; }
+
 :not(pre) > code {
   background: var(--bg-alt);
   padding: 0.15em 0.4em;
