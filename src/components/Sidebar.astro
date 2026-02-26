@@ -4,7 +4,7 @@ const { currentPath = '/' } = Astro.props;
 
 <aside class="sidebar" id="sidebar">
   <!-- Profile -->
-  <div class="sidebar__profile-wrapper">
+  <div class="sidebar__profile-wrapper" id="profile-wrapper">
     <img class="sidebar__profile-img" src="/images/profile.jpg" alt="Max Francis" />
     <div class="sidebar__profile-overlay">Woof 🐾</div>
   </div>
@@ -12,3 +12,20 @@ const { currentPath = '/' } = Astro.props;
   <a href="/" class="sidebar__name">Max Francis</a>
   <p class="sidebar__tagline">Thoughts from someone trying to figure it out</p>
 </aside>
+
+<script>
+  const wrapper = document.getElementById('profile-wrapper');
+  let autoHideTimer = null;
+
+  wrapper.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (wrapper.classList.contains('active')) {
+      wrapper.classList.remove('active');
+      clearTimeout(autoHideTimer);
+    } else {
+      wrapper.classList.add('active');
+      clearTimeout(autoHideTimer);
+      autoHideTimer = setTimeout(() => wrapper.classList.remove('active'), 2000);
+    }
+  }, { passive: false });
+</script>

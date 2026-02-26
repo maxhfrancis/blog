@@ -272,7 +272,8 @@ body {
   border-radius: 50%;
 }
 
-.sidebar__profile-wrapper:hover .sidebar__profile-overlay { opacity: 1; }
+.sidebar__profile-wrapper:hover .sidebar__profile-overlay,
+.sidebar__profile-wrapper.active .sidebar__profile-overlay { opacity: 1; }
 
 .sidebar__name {
   font-family: 'Playfair Display', Georgia, serif;
