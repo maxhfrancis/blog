@@ -32,7 +32,10 @@ const { title = 'Max Francis', currentPath = '/' } = Astro.props;
       <!-- Mobile-only top bar -->
       <header class="mobile-header">
         <div class="mobile-header__identity">
-          <img src="/images/profile.jpg" alt="" class="mobile-header__avatar" />
+          <div class="mobile-header__avatar-wrapper" id="mobile-profile-wrapper">
+            <img src="/images/profile.jpg" alt="" class="mobile-header__avatar" />
+            <div class="mobile-header__avatar-overlay">🐾</div>
+          </div>
           <a href="/" class="mobile-header__name">Max Francis</a>
         </div>
       </header>
@@ -60,5 +63,21 @@ const { title = 'Max Francis', currentPath = '/' } = Astro.props;
       </footer>
     </div>
   </div>
+  <script>
+    const mobileWrapper = document.getElementById('mobile-profile-wrapper');
+    let mobileHideTimer = null;
+
+    mobileWrapper.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      if (mobileWrapper.classList.contains('active')) {
+        mobileWrapper.classList.remove('active');
+        clearTimeout(mobileHideTimer);
+      } else {
+        mobileWrapper.classList.add('active');
+        clearTimeout(mobileHideTimer);
+        mobileHideTimer = setTimeout(() => mobileWrapper.classList.remove('active'), 2000);
+      }
+    }, { passive: false });
+  </script>
 </body>
 </html>

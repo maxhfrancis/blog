@@ -132,14 +132,40 @@ body {
   gap: var(--space-sm);
 }
 
-.mobile-header__avatar {
+.mobile-header__avatar-wrapper {
+  position: relative;
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  object-fit: cover;
+  overflow: hidden;
   border: 2px solid var(--accent1);
   flex-shrink: 0;
+  cursor: pointer;
 }
+
+.mobile-header__avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mobile-header__avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 0.7rem;
+  color: var(--overlay-text);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.mobile-header__avatar-wrapper.active .mobile-header__avatar-overlay { opacity: 1; }
 
 .mobile-header__name {
   font-family: 'Playfair Display', Georgia, serif;
