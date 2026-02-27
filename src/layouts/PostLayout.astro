@@ -4,7 +4,7 @@ import ReadingProgress from '../components/ReadingProgress.astro';
 
 const { title, description, currentPath } = Astro.props;
 ---
-<BaseLayout title={title} currentPath={currentPath}>
+<BaseLayout title={title} description={description} ogType="article" currentPath={currentPath}>
   <ReadingProgress />
   <div class="content">
     <h1 class="post-title">{title}</h1>

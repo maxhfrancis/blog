@@ -8,7 +8,7 @@ const posts = (await getCollection('posts'))
 
 const currentPath = '/';
 ---
-<BaseLayout title="Blog" currentPath={currentPath}>
+<BaseLayout currentPath={currentPath}>
   <div class="content">
     {posts.map(post => (
       <article class="post-card">

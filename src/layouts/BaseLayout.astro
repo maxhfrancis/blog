@@ -3,14 +3,29 @@ import Sidebar from '../components/Sidebar.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import '../styles/global.css';
 
-const { title = 'Max Francis', currentPath = '/' } = Astro.props;
+const {
+  title = 'Max Francis',
+  description = 'Thoughts on strategy, marketing, technology, and family by Max Francis',
+  ogType = 'website',
+  currentPath = '/',
+} = Astro.props;
+
+const pageTitle = (!title || title === 'Max Francis') ? 'Max Francis' : `${title} — Max Francis`;
+const canonicalURL = new URL(currentPath, Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title} | Max Francis</title>
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:title" content={title || 'Max Francis'} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="Max Francis" />
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script is:inline>

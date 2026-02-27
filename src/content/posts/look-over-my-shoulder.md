@@ -1,6 +1,6 @@
 ---
 title: "Look Over My Shoulder"
-description: "Closing the gap between good and extraordinary"
+description: "Closing the gap between good and extraordinary."
 date: 2026-02-26
 draft: false
 ---
