@@ -1,5 +1,5 @@
 ---
-title: "Stop Marketing to Everyone — Focus on Your Best Customers"
+title: "Stop Marketing to Everyone"
 description: "A strategy to unlock future customer loyalty."
 date: 2024-08-12
 draft: false

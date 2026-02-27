@@ -10,7 +10,7 @@ const {
   currentPath = '/',
 } = Astro.props;
 
-const pageTitle = (!title || title === 'Max Francis') ? 'Max Francis' : `${title} — Max Francis`;
+const pageTitle = (!title || title === 'Max Francis') ? 'Max Francis' : `${title} | Max Francis`;
 const canonicalURL = new URL(currentPath, Astro.site).href;
 ---
 <!DOCTYPE html>
