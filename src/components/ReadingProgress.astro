@@ -18,6 +18,17 @@
     bar.style.transform = `scaleX(${progress})`;
   }
 
+  function checkScrollable() {
+    if (!bar) return;
+    if (document.documentElement.scrollHeight > window.innerHeight) {
+      bar.style.display = '';
+      updateProgress();
+    } else {
+      bar.style.display = 'none';
+    }
+  }
+
   window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
+  window.addEventListener('resize', checkScrollable, { passive: true });
+  checkScrollable();
 </script>
