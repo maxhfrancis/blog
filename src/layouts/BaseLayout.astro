@@ -26,6 +26,17 @@ const canonicalURL = new URL(currentPath, Astro.site).href;
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content="Max Francis" />
+  {import.meta.env.PROD && import.meta.env.PUBLIC_GA_ID && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
+      <script define:vars={{ gaId: import.meta.env.PUBLIC_GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+      </script>
+    </>
+  )}
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script is:inline>
