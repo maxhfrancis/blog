@@ -5,4 +5,4 @@ date: 2026-02-27
 draft: false
 ---
 
-![A picture is worth a thousand words](/images/lucid%20dark%20mode.png)
+![A picture is worth a thousand words](/images/lucidDarkMode.png)
