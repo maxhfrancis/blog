@@ -372,6 +372,14 @@ a:hover {
 .content a:hover { color: var(--accent2); }
 .content h1 a, .content h2 a, .content h3 a { color: var(--heading); text-decoration: none; }
 
+.content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  border-radius: var(--radius-sm, 4px);
+}
+
 /* ── BLOCKQUOTE ─────────────────────────────────────────── */
 blockquote {
   border-left: 3px solid var(--accent3);
