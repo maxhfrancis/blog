@@ -342,7 +342,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 2rem;
   margin-bottom: 1.4em;
 }
-.content li { line-height: 1.8; }
+.content li { line-height: 1.8; margin-bottom: 0.4rem; }
 
 .post-title {
   font-weight: 700;
